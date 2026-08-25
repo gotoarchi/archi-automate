@@ -46,7 +46,7 @@ The installer places the MCP server on your machine and the **Hub shows you the 
 
 ## After connecting
 
-1. Open a model in a supported host (Revit, AutoCAD, Archicad, Rhino, Tekla, Vectorworks, SketchUp, Blender, QGIS), or have an `.ifc` file ready for the openBIM connector. For **Autodesk Forma** there is nothing to open locally — sign in to Autodesk from the Hub and register your project.
+1. Open a model in a supported host (Revit, AutoCAD, Archicad, Rhino, Tekla, Vectorworks, SketchUp, Blender, QGIS), or have an `.ifc` file ready for the openBIM connector. For the cloud connectors — **Autodesk Forma** and **Construction Cloud / BIM 360** — there is nothing to open locally: sign in to Autodesk from the Hub and register your project.
 2. In your AI client, ask the assistant to list available sessions or describe the open model.
 3. Start with read-only questions; enable write operations through your policy when you're ready (writes are governed and audited).
 

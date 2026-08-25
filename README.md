@@ -1,6 +1,6 @@
 # Archi Automate — AI for AEC
 
-**One AI connection for Revit, Archicad, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, QGIS, openBIM/IFC — and Autodesk Forma in the cloud.**
+**One AI connection for Revit, Archicad, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, QGIS, openBIM/IFC — and Autodesk Forma and Construction Cloud in the cloud.**
 
 Archi Automate is a commercial **MCP (Model Context Protocol) server** that connects AI assistants — the Claude (Anthropic), GPT/Codex (OpenAI), and Gemini (Google) families — to your **live AEC models**. Query, analyze, validate, and automate with natural language, across multiple design tools at once, from the AI client you already use.
 
@@ -11,6 +11,15 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 [![Website](https://img.shields.io/badge/website-goto.archi-0f62fe)](https://goto.archi/ai-for-aec)
 [![MCP](https://img.shields.io/badge/protocol-MCP-5b9bff)](https://modelcontextprotocol.io)
 [![Trial](https://img.shields.io/badge/trial-14--day%20free-2e7d32)](https://goto.archi/ai-for-aec)
+[![Version](https://img.shields.io/badge/version-27.20-4d4d4d)](https://goto.archi/ai-for-aec)
+
+---
+
+## What's new in 27.20
+
+- **Archicad 27 and 28 join Archicad 29** — one add-on, built and signed per generation; the installer detects which Archicad versions are on your machine and deploys the matching one.
+- **Autodesk Construction Cloud / BIM 360 connector** — hubs, projects, folder trees and files across data regions, with nothing to install. It can also **move a whole project between hubs or regions**, republishing Revit cloud models along the way — something Autodesk offers no service for.
+- Autodesk **Forma** has been a supported cloud host since 27.16.
 
 ---
 
@@ -23,6 +32,7 @@ Archi Automate exposes your design tools to any MCP-capable AI client through a 
 - **Validate and coordinate openBIM** — check models against standards, detect clashes, and raise coordination issues.
 - **See and present models** — render snapshots, drive a local 3D viewer, run a solar study, and export for AR.
 - **Work across desktop and cloud** — read a cloud site, bring its context into a desktop tool, and send massing back.
+- **Move cloud projects** — copy an Autodesk project's folders and files to another hub or data region, Revit cloud models included.
 
 For Revit, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, and QGIS, the AI can compose operations across the host's full capability surface — not just a fixed command list. **All write operations are policy-gated, checked before they run, and fully audited** (see [Governance & privacy](#governance--privacy)).
 
@@ -34,7 +44,7 @@ For Revit, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, and QGIS, the 
 |------|----------|-------------|
 | **Autodesk Revit** | 2025, 2026, 2027 | In-process add-in |
 | **Autodesk AutoCAD** | 2025, 2026, 2027 | In-process plug-in (per-release bundle) |
-| **Graphisoft Archicad** | 29 | Native add-on + bridge |
+| **Graphisoft Archicad** | 27, 28, 29 | Native add-on + bridge (signed, per version) |
 | **Rhino (McNeel)** | 8 | Rhino plug-in |
 | **Trimble Tekla Structures** | 2026 | Resident bridge |
 | **Vectorworks** | 2026 | In-process plug-in |
@@ -43,8 +53,11 @@ For Revit, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, and QGIS, the 
 | **QGIS** | current releases | Python plug-in |
 | **openBIM / IFC** | IFC2x3 · IFC4 · IFC4x1 · IFC4x3 | Headless connector — **no CAD app or host license required** |
 | **Autodesk Forma** | cloud service | **Cloud connector — nothing to install**; browser sign-in |
+| **Autodesk Construction Cloud / BIM 360** | cloud service (US · EMEA) | **Cloud connector — nothing to install**; browser sign-in |
 
 openBIM works on IFC exported from **any** authoring tool (Revit, Archicad, Rhino, Tekla, MicroStation, …), independent of vendor.
+
+Archicad 27, 28 and 29 are each served by their own signed add-on built from the same source; the installer deploys the build that matches every Archicad it finds.
 
 ---
 
@@ -64,6 +77,12 @@ openBIM works on IFC exported from **any** authoring tool (Revit, Archicad, Rhin
 - Export the whole site to the portable **Scene Contract**, so a real, geolocated context flows into your desktop tools and our simulation stack.
 - **Author back into Forma:** create design proposals, contribute massing geometry (from a footprint + height, or an existing `.glb`), and place it **automatically grounded on the terrain**.
 - Trigger **Forma's own sun analysis** on the buildings in a proposal and read the result.
+
+**Autodesk Construction Cloud / BIM 360 (cloud)**
+- Reach **hubs and projects across data regions** — a US and an EMEA hub in the same conversation — walk folder trees, and read item, version, permission and membership detail, with **no local installation**.
+- **Download and upload** project files with per-version integrity verification; create folders, items and new versions, or whole **projects** with their initial members.
+- **Move a project to another hub or region** — BIM 360 → ACC, US → EMEA — file by file and verified, **including republishing Revit cloud models**, which no Autodesk service does for you.
+- Stated plainly: latest versions travel, version history stays with the source project, and issues, markups and permissions do not move.
 
 **Analysis & sustainability** — geometric **clash detection** (federation-aware), **quantity take-off**, classification authoring (**Uniclass / OmniClass / bSDD**), and **embodied-carbon estimation** (EN 15978 / EN 15804, with open EPD data).
 
@@ -97,7 +116,7 @@ Any other current or future MCP client connects with the same copy-paste stdio c
 3. **Start a 14-day free trial** — full-featured, no license key required, covering all hosts.
 4. **Ask away** — open a model, point your AI client at it, and start in natural language.
 
-For the cloud connector, there is nothing to install: sign in to Autodesk from the Hub and register the project you want to work with. Cloud projects also require a one-time authorization of Archi Automate by an account administrator — the Hub shows you exactly what to send them.
+For the cloud connectors — Forma and Construction Cloud / BIM 360 — there is nothing to install: sign in to Autodesk from the Hub and register the project you want to work with. Cloud projects also require a one-time authorization of Archi Automate by an account administrator, once per Autodesk account and region — the Hub shows you exactly what to send them.
 
 Full step-by-step setup, per-client instructions, and troubleshooting are in the [**user guide**](https://goto.archi/archi-automate-user-guide).
 
@@ -131,4 +150,4 @@ Archi Automate is built by **Archi (Archi Systems AS)**, Oslo, Norway — makers
 
 **Note:** Archi Automate is **commercial software**. This repository is the official **integration and documentation** hub — it does not contain the product source. Questions, setup help, and issue reports are welcome via [Issues](../../issues) or https://goto.archi.
 
-© Archi Systems AS. "Archi" and "Archi Automate" are trademarks of Archi Systems AS. Revit, AutoCAD, Forma, Archicad, Rhino, Tekla, Vectorworks, SketchUp, Blender, QGIS, Claude, GPT, Gemini, and other names are trademarks of their respective owners.
+© Archi Systems AS. "Archi" and "Archi Automate" are trademarks of Archi Systems AS. Revit, AutoCAD, Forma, Autodesk Construction Cloud, BIM 360, Archicad, Rhino, Tekla, Vectorworks, SketchUp, Blender, QGIS, Claude, GPT, Gemini, and other names are trademarks of their respective owners.
