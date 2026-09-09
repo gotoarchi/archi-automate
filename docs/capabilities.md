@@ -2,7 +2,7 @@
 
 A plain-language reference of what Archi Automate can do across hosts, current as of version **27.20**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
 
-All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`), with a cross-host discovery tool so the AI can target any open session.
+All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
 
 ---
 
@@ -115,6 +115,61 @@ New in 27.20, and proven end to end: copy a complete project — folder tree and
 - The move runs as a guided, supported workflow rather than a one-click action in the Hub.
 
 **Access** — an account administrator authorizes Archi Automate on the Autodesk account once, and separately for each account or region the team works in, since those are separate accounts. Until that is done the hub simply does not appear in listings; Archi Automate reports it as *needs provisioning* rather than leaving you to guess. The Hub shows exactly what to send the administrator.
+
+## AI image generation (new in 27.26)
+Turn what the Archi Automate viewer is showing into a presentation image with a cloud AI model, from
+inside your agent — with a price before you spend and a provenance record after.
+
+**Rendered from your model, not from a description**
+- The local viewer supplies the input: a **beauty** capture, a **linear depth** pass, a **hidden-line**
+  pass and a **selection mask**, from the exact camera you chose.
+- Depth and line art are what keep the geometry: the model restyles materials, light, sky and context
+  without redesigning the building.
+
+**Five ways to work**
+| Mode | You give | You get |
+|---|---|---|
+| Text to image | a prompt | A fresh image — mood boards, material studies, context. |
+| Reference | a viewer capture or any image | Your composition kept; materials, light and mood restyled. |
+| Structure | a depth or line-art control image | Geometry hard-locked to the control. |
+| Inpaint | a mask | Only the masked area regenerated; the rest untouched. |
+| Upscale | an existing image | The same image, 2x or 4x larger. |
+
+**Providers — your account, your keys**
+- **Google** (Gemini image models), **OpenAI**, **Black Forest Labs** (FLUX) and **fal.ai** (ControlNet,
+  upscalers, segmentation-based masks, preprocessors).
+- Keys are entered in the Hub's **Services** view, stored **encrypted for your Windows user account**,
+  never echoed back to the assistant, and scrubbed from every message and provenance file. An
+  environment variable can override them on shared or CI machines. Policy can forbid key entry through
+  the tools entirely, so no model ever sees a key.
+
+**Cost is known before it is spent**
+- A **free estimate** for any model, size and count — no key required.
+- An optional **monthly budget**, checked before the request leaves your machine and recorded only
+  after images exist, so a provider outage costs nothing.
+- A local, append-only **spend ledger**; your provider's dashboard remains the authoritative invoice.
+
+**Every image is traceable**
+- Each render writes the full-size PNG, a thumbnail (the only image the assistant receives — full-size
+  images stay on disk), the originating viewer capture, and a **provenance sidecar** recording the
+  source image and its **SHA-256**, camera, lane, provider, model, the prompt **as sent**, size, seed,
+  cost and how it was measured, watermark kind, elapsed time and product version.
+- Chained edits are counted on disk and warned about, because repeated round-trips degrade an image.
+
+**Built to outlive the release**
+- The model catalogue is a **data file you can edit and reload** — prices and new model ids without a
+  new build.
+- Unrecognised sizes, aspect ratios and options are **passed through with a warning** rather than
+  refused: the provider is the authority, not our table.
+- A **raw passthrough** calls any endpoint a supported provider offers, including models that did not
+  exist when your version shipped.
+
+**Confidential projects**
+- One switch sends every provider's no-store option and **refuses any model whose provider trains on
+  customer inputs** — the one place in this feature that blocks rather than warns, because training
+  cannot be undone afterwards.
+- Outputs carry the provider's watermark (Google **SynthID**, OpenAI **C2PA**). Disclose AI-assisted
+  imagery where a client or competition requires it.
 
 ## Simulation & visualization (cross-host)
 - **Scene Contract** — IFC, Revit, Rhino and Forma export the same portable scene, so everything downstream behaves identically regardless of source tool.

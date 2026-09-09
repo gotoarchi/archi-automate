@@ -11,27 +11,32 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 [![Website](https://img.shields.io/badge/website-goto.archi-0f62fe)](https://goto.archi/ai-for-aec)
 [![MCP](https://img.shields.io/badge/protocol-MCP-5b9bff)](https://modelcontextprotocol.io)
 [![Trial](https://img.shields.io/badge/trial-14--day%20free-2e7d32)](https://goto.archi/ai-for-aec)
-[![Version](https://img.shields.io/badge/version-27.20-4d4d4d)](https://goto.archi/ai-for-aec)
+[![Version](https://img.shields.io/badge/version-27.26-4d4d4d)](https://goto.archi/ai-for-aec)
 
 ---
 
-## What's new in 27.20
+## What's new in 27.26
 
-- **Archicad 27 and 28 join Archicad 29** — one add-on, built and signed per generation; the installer detects which Archicad versions are on your machine and deploys the matching one.
-- **Autodesk Construction Cloud / BIM 360 connector** — hubs, projects, folder trees and files across data regions, with nothing to install. It can also **move a whole project between hubs or regions**, republishing Revit cloud models along the way — something Autodesk offers no service for.
-- Autodesk **Forma** has been a supported cloud host since 27.16.
+- **AI image generation from your own model** — turn what the viewer is showing into a rendered image without leaving your agent. The viewer's **depth, hidden-line and mask passes** keep the architect's geometry instead of letting the model reinvent it, and the camera travels with the image.
+- **Bring your own provider** — Google (Gemini), OpenAI, Black Forest Labs (FLUX) and fal.ai. You hold the account; keys are entered in the Hub and stored encrypted for your Windows user account.
+- **Know the price before you spend** — a free estimate for any model and size, an optional monthly budget checked before the request leaves the machine, and a local spend ledger.
+- **Every image is traceable** — each render writes a provenance file recording the source image and its hash, camera, model, prompt, cost and watermark kind.
+- **Not limited to the models we shipped** — a raw passthrough calls anything a provider offers, including models released after your build.
+
+Earlier: **27.20** added Archicad 27 and 28 alongside 29, and the **Autodesk Construction Cloud / BIM 360** connector — including moving a whole project between hubs or data regions. **Forma** has been a supported cloud host since 27.16.
 
 ---
 
 ## What it does
 
-Archi Automate exposes your design tools to any MCP-capable AI client through a single server. Tools are namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`), plus a cross-host discovery tool, so the AI can see and act on every open model at once.
+Archi Automate exposes your design tools to any MCP-capable AI client through a single server. Tools are namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`) and a cross-host discovery tool, so the AI can see and act on every open model at once.
 
 - **Ask questions in plain language** — "How many fire-rated doors are on level 3?", "List elements missing a type mark", "Summarize this IFC's spatial structure."
 - **Automate modeling and documentation** — drive repetitive or multi-step tasks the AI composes for you across the host's capabilities.
 - **Validate and coordinate openBIM** — check models against standards, detect clashes, and raise coordination issues.
 - **See and present models** — render snapshots, drive a local 3D viewer, run a solar study, and export for AR.
 - **Work across desktop and cloud** — read a cloud site, bring its context into a desktop tool, and send massing back.
+- **Render presentation images** — turn the model's own geometry into an AI-rendered visual, with the geometry locked, the price known before you spend, and provenance written beside every result.
 - **Move cloud projects** — copy an Autodesk project's folders and files to another hub or data region, Revit cloud models included.
 
 For Revit, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, and QGIS, the AI can compose operations across the host's full capability surface — not just a fixed command list. **All write operations are policy-gated, checked before they run, and fully audited** (see [Governance & privacy](#governance--privacy)).
@@ -93,6 +98,14 @@ Archicad 27, 28 and 29 are each served by their own signed add-on built from the
 - **Site context** from public open data (address → surrounding building footprints).
 - **AR export** to **USDZ** (Apple AR Quick Look) alongside glTF.
 
+**AI image generation (new in 27.26)**
+- Render from **your model, not a text prompt alone** — the local viewer's beauty, **depth**, **hidden-line** and **selection-mask** passes become the control input, so the building you designed is the building in the picture.
+- Five ways to work: a fresh image from a prompt, a **restyle** that keeps your composition, a **geometry-locked** render driven by depth or line art, **inpainting** of just a masked area, and **upscaling**.
+- **Your provider account, your keys** — Google (Gemini), OpenAI, Black Forest Labs (FLUX) and fal.ai; keys are entered in the Hub, encrypted for your Windows user, and never returned to the assistant.
+- **Costed before it runs** — a free estimate for any model and size, an optional monthly cap, and a local ledger of what was actually spent.
+- **Provenance beside every image** — source image and SHA-256, camera, model, prompt as sent, size, seed, cost and watermark kind, so an AI-assisted visual can be disclosed and audited.
+- The model catalogue is **data you can edit**, and a raw passthrough reaches models newer than your build.
+
 📖 Full capability reference: [`docs/capabilities.md`](docs/capabilities.md)
 
 ---
@@ -128,6 +141,8 @@ Full step-by-step setup, per-client instructions, and troubleshooting are in the
 - **A local control center (the Hub)** monitors every host connection and lets administrators edit guardrails graphically.
 - **Local by default** — scene export, the 3D viewer, and the solar study run entirely on your machine; **no model data is uploaded**. The only optional outbound calls are public open-data lookups for site context (address geocoding and surrounding footprints) — no model data leaves your machine.
 - **Cloud connectors never see your password.** Sign-in happens in your own browser on the vendor's page; Archi Automate receives only a revocable access token, stored encrypted for your Windows user account on your machine. Nothing is held on our servers, and you can revoke access at any time from your vendor account or by disconnecting in the Hub. A cloud connector can only ever reach what the signed-in user is already permitted to see.
+- **AI image generation is bounded by the same policy** — it can be switched off entirely, restricted to named providers, capped by monthly budget and image size, and put in **confidential-project mode**, where every request carries the provider's no-store switch and any model whose provider trains on customer inputs is refused outright. Provider keys can be locked to Hub entry so a key never passes through a chat.
+- **AI-generated images are labelled** — outputs carry the provider's watermark (Google SynthID, OpenAI C2PA) and a provenance sidecar; disclose AI-assisted imagery where a client or competition requires it.
 - **Your AI provider** handles your prompts per its own terms; Archi Automate adds the governed bridge between the AI and your models.
 
 ---
