@@ -2,7 +2,7 @@
 
 A plain-language reference of what Archi Automate can do across hosts, current as of version **27.20**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
 
-All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
+All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
 
 ---
 
@@ -13,7 +13,7 @@ All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `arch
 - **Multi-session, multi-host** — one conversation can reach every supported tool at the same time and carry intent between them.
 - **Voice** — available wherever your connected AI client provides it.
 
-## Revit (2025 / 2026 / 2027)
+## Revit (2024 / 2025 / 2026 / 2027)
 - Read and query any open model; author and modify elements; governed writes with automatic rollback on failure.
 - **Publish to the cloud** — save an open local model into an Autodesk cloud project as a cloud model, keeping its workshared or single-user state. This is what lets cloud models take part in the project move described under Construction Cloud below.
 - Fast, recoverable signal when Revit is busy (starting, modal dialog, mid-command) instead of hanging.
@@ -28,6 +28,54 @@ All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `arch
 
 ## Rhino 8
 - Read and query geometry and document data; author and modify; governed writes wrapped in a single undo step.
+
+## Grasshopper (inside Rhino 8)
+The AI works on the **definition itself**, not just the geometry it produces.
+
+**Read**
+- The live graph: every object with its component type, canvas position, parameters, wires and solver
+  state — filterable by category, message level, group or canvas selection, and paged for large
+  definitions.
+- Current computed **data-tree values** for any parameter.
+- The **installed component catalogue** — search by name, category or GUID, and describe a component
+  before using it, so the AI builds with what this machine actually has.
+
+**Author**
+- Batched graph edits — add and remove components, wire and unwire, set values — validated first and
+  applied as **one Grasshopper undo step**; if any operation in the batch fails, the whole batch rolls
+  back.
+- **Auto-layout** arranges objects left to right by dependency depth, which is how a definition is
+  read — the data flow becomes visible instead of something you reconstruct by tracing wires. Align and
+  distribute are available too.
+- **Clusters** — create one from an explicit selection (ports are built from the wires that crossed the
+  boundary, and the surrounding graph is reconnected), explode one back onto the canvas, and save or
+  load `.ghcluster` files.
+- **Definitions** — create, open, duplicate, import/merge, save and close. An opened definition is
+  loaded **disabled**, so components with external side effects do not fire just because a file was
+  opened; solving is a separate, deliberate call.
+
+**Debug**
+- Diagnostics report each component's **actual message text** and solve phase, plus its upstream and
+  downstream neighbours. One bad input turns everything after it red, so a long error list is usually
+  one real error and many consequences — the report points at the **origin**: the object with a message
+  whose upstream neighbours are all clean.
+
+**See what was built**
+- Export the **whole definition** to a PNG — the entire graph, not just what fits on screen, and it
+  works with the editor hidden — so the assistant can look at the result of its own edits.
+
+**Bake, deliberately**
+- Baking geometry into the Rhino document is a **separate tool** from graph editing, because undoing an
+  edit does not undo a bake. It takes explicit sources rather than a bake-everything default, lands as
+  a single Rhino undo step, and reports what it *expected* to bake next to what it actually baked, with
+  the reason when the two differ.
+
+**Script components are gated apart from everything else**
+- A script component's code runs with the machine's full privileges. Replacing it requires a **separate
+  Script Authoring capability that is off by default** and that an administrator enables deliberately in
+  the Guardrails app — no ordinary execution mode grants it. The write also requires the hash of the
+  code that was read, so a component someone else changed in the meantime is refused rather than
+  silently overwritten.
 
 ## Tekla Structures 2026
 - Read and query the structural model — parts, assemblies, and properties — from a resident bridge that starts on demand.

@@ -23,19 +23,20 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 - **Every image is traceable** — each render writes a provenance file recording the source image and its hash, camera, model, prompt, cost and watermark kind.
 - **Not limited to the models we shipped** — a raw passthrough calls anything a provider offers, including models released after your build.
 
-Earlier: **27.20** added Archicad 27 and 28 alongside 29, and the **Autodesk Construction Cloud / BIM 360** connector — including moving a whole project between hubs or data regions. **Forma** has been a supported cloud host since 27.16.
+Earlier: **27.23** added the **Grasshopper** graph connector and **Revit 2024**; **27.20** added Archicad 27 and 28 alongside 29, and the **Autodesk Construction Cloud / BIM 360** connector — including moving a whole project between hubs or data regions. **Forma** has been a supported cloud host since 27.16.
 
 ---
 
 ## What it does
 
-Archi Automate exposes your design tools to any MCP-capable AI client through a single server. Tools are namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`) and a cross-host discovery tool, so the AI can see and act on every open model at once.
+Archi Automate exposes your design tools to any MCP-capable AI client through a single server. Tools are namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`) and a cross-host discovery tool, so the AI can see and act on every open model at once.
 
 - **Ask questions in plain language** — "How many fire-rated doors are on level 3?", "List elements missing a type mark", "Summarize this IFC's spatial structure."
 - **Automate modeling and documentation** — drive repetitive or multi-step tasks the AI composes for you across the host's capabilities.
 - **Validate and coordinate openBIM** — check models against standards, detect clashes, and raise coordination issues.
 - **See and present models** — render snapshots, drive a local 3D viewer, run a solar study, and export for AR.
 - **Work across desktop and cloud** — read a cloud site, bring its context into a desktop tool, and send massing back.
+- **Work in visual programming** — read, build, debug and lay out **Grasshopper** definitions themselves, not just the geometry they produce.
 - **Render presentation images** — turn the model's own geometry into an AI-rendered visual, with the geometry locked, the price known before you spend, and provenance written beside every result.
 - **Move cloud projects** — copy an Autodesk project's folders and files to another hub or data region, Revit cloud models included.
 
@@ -47,10 +48,10 @@ For Revit, Rhino, AutoCAD, Tekla, Vectorworks, SketchUp, Blender, and QGIS, the 
 
 | Host | Versions | Integration |
 |------|----------|-------------|
-| **Autodesk Revit** | 2025, 2026, 2027 | In-process add-in |
+| **Autodesk Revit** | 2024, 2025, 2026, 2027 | In-process add-in |
 | **Autodesk AutoCAD** | 2025, 2026, 2027 | In-process plug-in (per-release bundle) |
 | **Graphisoft Archicad** | 27, 28, 29 | Native add-on + bridge (signed, per version) |
-| **Rhino (McNeel)** | 8 | Rhino plug-in |
+| **Rhino (McNeel)** | 8 — incl. **Grasshopper** | Rhino plug-in |
 | **Trimble Tekla Structures** | 2026 | Resident bridge |
 | **Vectorworks** | 2026 | In-process plug-in |
 | **Trimble SketchUp** | 2026 | Ruby extension |
@@ -97,6 +98,8 @@ Archicad 27, 28 and 29 are each served by their own signed add-on built from the
 - An offline **solar-access (sun) study** computed against the model's own geometry.
 - **Site context** from public open data (address → surrounding building footprints).
 - **AR export** to **USDZ** (Apple AR Quick Look) alongside glTF.
+
+**Grasshopper (inside Rhino)** — the AI works on the definition itself, not only its output: inspect the live graph, its wires and computed values, search the installed component catalogue, and apply batched edits that land as **one undo step** and roll back entirely if any part fails. It can auto-lay-out a graph left-to-right by dependency depth so the data flow is readable, build and explode clusters, export a picture of the whole definition to look at what it built, and bake results into Rhino as a single, explicit undo step. Diagnostics name the component that **actually** broke rather than the dozens downstream of it. Script-component code sits behind a separate, administrator-enabled capability.
 
 **AI image generation (new in 27.26)**
 - Render from **your model, not a text prompt alone** — the local viewer's beauty, **depth**, **hidden-line** and **selection-mask** passes become the control input, so the building you designed is the building in the picture.
