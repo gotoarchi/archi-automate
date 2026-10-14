@@ -1,8 +1,8 @@
 # Archi Automate — Capability Reference
 
-A plain-language reference of what Archi Automate can do across hosts, current as of version **27.20**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
+A plain-language reference of what Archi Automate can do across hosts, current as of version **27.28**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
 
-All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `tekla_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
+All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
 
 ---
 
@@ -77,9 +77,13 @@ The AI works on the **definition itself**, not just the geometry it produces.
   code that was read, so a component someone else changed in the meantime is refused rather than
   silently overwritten.
 
-## Tekla Structures 2026
-- Read and query the structural model — parts, assemblies, and properties — from a resident bridge that starts on demand.
-- Governed automation against the Tekla API.
+## Dynamic Bridge (since 27.28) — works with Tekla Structures
+- Nothing is pre-programmed: your AI assistant reads the API of your own installation and writes the code as you ask, on your machine. It runs C# against an installed application that has a .NET Framework API (64-bit); tested with Tekla Structures 2026.
+- With Tekla Structures the assistant works with the whole API of your installation — the 3D model, the drawings, the catalogs.
+- **No read-only mode.** Code runs only with Guardrails set to Allow changes; Preview changes checks it without running it. Nothing is undone, committed or saved for you; an engineer checks the result.
+- Replaces the `tekla_*` tools of 27.27 and earlier. Free guide: [Working with Tekla Structures through the Dynamic Bridge](../guides/tekla-structures/).
+
+Tekla and Tekla Structures are trademarks of Trimble. Archi Automate is independent and is not affiliated with or endorsed by Trimble.
 
 ## Vectorworks 2026
 - Read and query document data; create and delete elements; export the scene for downstream simulation.
