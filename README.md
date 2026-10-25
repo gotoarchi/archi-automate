@@ -1,6 +1,6 @@
 # Archi Automate — AI for AEC
 
-**One AI connection for Revit, Archicad, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, QGIS, openBIM/IFC — and Autodesk Forma and Construction Cloud in the cloud. New: the Dynamic Bridge, which works with Tekla Structures.**
+**One AI connection for Revit, Archicad, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, QGIS, Unreal Engine, openBIM/IFC, Tekla Structures through the Dynamic Bridge — and Autodesk Forma and Construction Cloud in the cloud. New in 27.32: the AI uses Archicad's own functions.**
 
 Archi Automate is a commercial **MCP (Model Context Protocol) server** that connects AI assistants — the Claude (Anthropic), GPT/Codex (OpenAI), and Gemini (Google) families — to your **live AEC models**. Query, analyze, validate, and automate with natural language, across multiple design tools at once, from the AI client you already use.
 
@@ -11,40 +11,44 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 [![Website](https://img.shields.io/badge/website-goto.archi-0f62fe)](https://goto.archi/ai-for-aec)
 [![MCP](https://img.shields.io/badge/protocol-MCP-5b9bff)](https://modelcontextprotocol.io)
 [![Trial](https://img.shields.io/badge/trial-14--day%20free-2e7d32)](https://goto.archi/ai-for-aec)
-[![Version](https://img.shields.io/badge/version-27.28-4d4d4d)](https://goto.archi/ai-for-aec)
+[![Version](https://img.shields.io/badge/version-27.32-4d4d4d)](https://goto.archi/ai-for-aec)
 
 ---
 
-## What's new in 27.28
+## What's new in 27.32
 
-- **New image generation models** — FLUX 3 Image (Black Forest Labs, and through fal.ai), with up to 4K output and up to ten reference images; Nano Banana 2.1 (Google, and through fal.ai), Google's replacement for Nano Banana 2 at about half the price per image; FLUX.2 klein 4B for fast drafts; and, through fal.ai, FLUX.2 max and flex, Nano Banana 2 and Seedream 5 lite.
-- **Size and budget limits now hold on Black Forest Labs, Google and fal.ai models** — a provider option that would enlarge the image or add images beyond what was checked is left out and reported. OpenAI provider options are not covered yet.
-- **Dynamic Bridge. Works with Tekla Structures.** Nothing is pre-programmed: your AI assistant reads the API of your own installation and writes the code as you ask, on your machine. It runs C# that the assistant writes, live, against an installed application that has a .NET API, and it was tested with Tekla Structures 2026. With Tekla Structures the assistant works with the whole API of your installation — the 3D model, the drawings, the catalogs. Ask your assistant to "connect to my Tekla Structures" and it sets itself up.
-- **Stated plainly:** the Dynamic Bridge has **no read-only mode**. It cannot tell a query from a change in an application it does not know, so its code runs only with Guardrails set to **Allow changes**; in **Preview changes** the code is checked and not run. Nothing is undone, committed or saved for you, and an engineer checks the result.
-- **If you used Tekla Structures with 27.27 or earlier:** the `tekla_*` tools are replaced by the Dynamic Bridge. Reading the model now needs Allow changes, and saved prompts or skills that name a `tekla_*` tool should become plain requests.
-- **A free guide** — [Working with Tekla Structures through the Dynamic Bridge](guides/tekla-structures/), ten short chapters in this repository. It is optional: the product does not depend on it.
-
-Tekla and Tekla Structures are trademarks of Trimble. Archi Automate is independent and is not affiliated with or endorsed by Trimble.
+- **Archicad: the AI uses Archicad's own functions.** 27.31 let the AI create, read and change any element. 27.32 lets it work with the rest of the project, through the same functions Archicad offers to add-ons. In Archicad 30 it can use **595 of the 606** functions that are useful to it (98%); in Archicad 27, 28 and 29, 93 to 95%. 27.31 used 89.
+- **What that covers** — views and layouts in the Navigator; project preferences, rendering settings and tool defaults; autotexts and revisions; quantities, user data and IFC data; hotlinks; issues and BCF; Teamwork reservations; libraries and favorites; opening a project, publishing a PDF set and rendering a photo; and geometry helpers.
+- **New GDL objects** — the AI can create a new GDL object, with its scripts and parameters, in one step.
+- **Freeform Morph elements** can now be created and reshaped.
+- **The tool list stays light.** The AI looks up the function it needs (`archicad_api_search`, kind "function"). Reads go through `archicad_query`. Changes Archicad can undo go into the batch (`archicad_execute_batch`): all or nothing, one undo step. Changes Archicad cannot undo run in a separate step (`archicad_project_ops`), and the answer says that Undo does not remove them.
+- **Tested live in Archicad 29 and 30.** Archicad 27 and 28 run the same add-on code.
+- **Guardrails: deletes are now allowed unless "Never delete elements" is on.** Until 27.31 the setting was on by default. From 27.32 it is off by default, so the AI can delete elements in Archicad, Grasshopper and Forma unless you tick it on the Hub's Guardrails page or your company policy turns it on. A company policy can only turn it on, never off. If you saved your Guardrails settings before 27.32, the setting keeps the value you saved. Read only and Preview changes still keep every change, deletes included, out of your model.
+- **Archicad users: run the installer**, then restart Archicad. The automatic update installs the new Archi Automate but cannot replace the add-on inside Archicad. Until the installer runs, the older Archicad tools keep working and the new features say the add-on is older than the bridge.
 
 ## Earlier releases
 
+**27.31** — Archicad: the AI can create, read and change any element, with every setting: 71 element types and about 2,400 settings in Archicad 30, with geometry, doors, windows and objects with their GDL parameters, and materials, surfaces, layers and composites by name.
+
+**27.30** — Unreal Engine: scenes exported from Revit, IFC, Rhino and Forma now import standing up, and SketchUp's scene export also writes a `.glb` that Unreal Engine can import.
+
+**27.29** — **Archicad 30** support. In Archicad 29 and 30 the AI reads and draws in 2D, lists and opens views, and sends its work as all-or-nothing batches that are one undo step and can be previewed (Archicad 27 and 28 have these since 27.31). A new **Unreal Engine** bridge: the AI reads the open level, runs read-only Python probes and undoable write tasks inside the Unreal Editor, exports the level and imports scenes.
+
+**27.28** — new image generation models (FLUX 3 Image, Nano Banana 2.1, FLUX.2 klein 4B and more through fal.ai), and the **Dynamic Bridge**, which works with Tekla Structures: your AI assistant reads the API of your own installation and writes the code as you ask, on your machine. It replaces the `tekla_*` tools of 27.27 and earlier. Free guide: [Working with Tekla Structures through the Dynamic Bridge](guides/tekla-structures/).
+
 **27.27** finds every installed Archicad 27, 28 and 29 and installs the matching add-on, on install and on repair.
 
-**27.26** added AI image generation:
-
-- **AI image generation from your own model** — turn what the viewer is showing into a rendered image without leaving your agent. The viewer's **depth, hidden-line and mask passes** keep the architect's geometry instead of letting the model reinvent it, and the camera travels with the image.
-- **Bring your own provider** — Google (Gemini), OpenAI, Black Forest Labs (FLUX) and fal.ai. You hold the account; keys are entered in the Hub and stored encrypted for your Windows user account.
-- **Know the price before you spend** — a free estimate for any model and size, an optional monthly budget checked before the request leaves the machine, and a local spend ledger.
-- **Every image is traceable** — each render writes a provenance file recording the source image and its hash, camera, model, prompt, cost and watermark kind.
-- **Not limited to the models we shipped** — a raw passthrough calls anything a provider offers, including models released after your build.
+**27.26** added AI image generation from your own model: the viewer's depth, hidden-line and mask passes keep your geometry, with your own provider account, a price before you spend, and a provenance file beside every image.
 
 Before that: **27.24** added the **Grasshopper** graph connector and **Revit 2024**; **27.20** added Archicad 27 and 28 alongside 29, and the **Autodesk Construction Cloud / BIM 360** connector — including moving a whole project between hubs or data regions. **Forma** has been a supported cloud host since 27.16.
+
+Tekla and Tekla Structures are trademarks of Trimble. Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. Archi Automate is independent and is not affiliated with or endorsed by Trimble or Epic Games.
 
 ---
 
 ## What it does
 
-Archi Automate exposes your design tools to any MCP-capable AI client through a single server. Tools are namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, which are the same for every application, image-generation tools (`render_*`, `provider_*`) and a cross-host discovery tool, so the AI can see and act on every open model at once.
+Archi Automate exposes your design tools to any MCP-capable AI client through a single server. Tools are namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `unreal_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, which are the same for every application, image-generation tools (`render_*`, `provider_*`) and a cross-host discovery tool, so the AI can see and act on every open model at once.
 
 - **Ask questions in plain language** — "How many fire-rated doors are on level 3?", "List elements missing a type mark", "Summarize this IFC's spatial structure."
 - **Automate modeling and documentation** — drive repetitive or multi-step tasks the AI composes for you across the host's capabilities.
@@ -55,7 +59,7 @@ Archi Automate exposes your design tools to any MCP-capable AI client through a 
 - **Render presentation images** — turn the model's own geometry into an AI-rendered visual, with the geometry locked, the price known before you spend, and provenance written beside every result.
 - **Move cloud projects** — copy an Autodesk project's folders and files to another hub or data region, Revit cloud models included.
 
-For Revit, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, and QGIS, the AI can compose operations across the host's full capability surface — not just a fixed command list. Through the **Dynamic Bridge** it does the same for Tekla Structures: it looks the API up in your own installation and writes the code. **All write operations are policy-gated, checked before they run, and fully audited** (see [Governance & privacy](#governance--privacy)).
+For Revit, Archicad, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, QGIS and Unreal Engine, the AI can compose operations across the host's full capability surface — not just a fixed command list. In Archicad it looks up the element setting or Archicad function it needs before it acts. Through the **Dynamic Bridge** it does the same for Tekla Structures: it looks the API up in your own installation and writes the code. **All write operations are policy-gated, checked before they run, and fully audited** (see [Governance & privacy](#governance--privacy)).
 
 ---
 
@@ -65,20 +69,23 @@ For Revit, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, and QGIS, the AI can 
 |------|----------|-------------|
 | **Autodesk Revit** | 2024, 2025, 2026, 2027 | In-process add-in |
 | **Autodesk AutoCAD** | 2025, 2026, 2027 | In-process plug-in (per-release bundle) |
-| **Graphisoft Archicad** | 27, 28, 29 | Native add-on + bridge (signed, per version) |
+| **Graphisoft Archicad** | 27, 28, 29, 30 | Native add-on + bridge (signed, per version) |
 | **Rhino (McNeel)** | 8 — incl. **Grasshopper** | Rhino plug-in |
 | **Dynamic Bridge** — works with Tekla Structures | Applications with a .NET Framework API, 64-bit; tested with Tekla Structures 2026 | Nothing installed into the application; your assistant sets it up the first time you ask. No read-only mode |
 | **Vectorworks** | 2026 | In-process plug-in |
 | **Trimble SketchUp** | 2026 | Ruby extension |
 | **Blender** | current releases | Python add-on |
 | **QGIS** | current releases | Python plug-in |
+| **Unreal Engine** | tested with 5.8 | Engine plug-in, editor only, through Epic's Python Editor Script Plugin |
 | **openBIM / IFC** | IFC2x3 · IFC4 · IFC4x1 · IFC4x3 | Headless connector — **no CAD app or host license required** |
 | **Autodesk Forma** | cloud service | **Cloud connector — nothing to install**; browser sign-in |
 | **Autodesk Construction Cloud / BIM 360** | cloud service (US · EMEA) | **Cloud connector — nothing to install**; browser sign-in |
 
 openBIM works on IFC exported from **any** authoring tool (Revit, Archicad, Rhino, Tekla, MicroStation, …), independent of vendor.
 
-Archicad 27, 28 and 29 are each served by their own signed add-on built from the same source; the installer deploys the build that matches every Archicad it finds.
+Archicad 27, 28, 29 and 30 are each served by their own signed add-on built from the same source; the installer deploys the build that matches every Archicad it finds. The Archicad features of 27.29 to 27.32 were tested live in Archicad 29 and 30; Archicad 27 and 28 run the same add-on code.
+
+Unreal Engine works in the Unreal Editor only and adds nothing to packaged projects. The installer adds the Archi Automate engine plug-in to each Unreal Engine it finds.
 
 ---
 
@@ -114,7 +121,20 @@ Archicad 27, 28 and 29 are each served by their own signed add-on built from the
 - **Site context** from public open data (address → surrounding building footprints).
 - **AR export** to **USDZ** (Apple AR Quick Look) alongside glTF.
 
-**Dynamic Bridge (new in 27.28)**
+**Archicad (27, 28, 29, 30)**
+- **Every element, every setting** (since 27.31) — create, read and change any element type with its documented settings: slabs, roofs, columns, beams, meshes, zones, hatches, curtain walls, stairs and railings with geometry; doors, windows, skylights and objects with their GDL parameters; materials, surfaces, layers and composites by name.
+- **Archicad's own functions** (since 27.32) — views and layouts, project settings, documentation, quantities and data, hotlinks, issues and BCF, Teamwork reservations, libraries, new GDL objects and freeform Morph elements.
+- **2D, views and batches** (since 27.29) — read and draw in plans, sections, elevations and layouts. Every batch is all or nothing and one undo step, and can be previewed.
+- **Reading never changes the model** and works in every Guardrails mode. Changes Archicad cannot undo run in a separate step, and the answer says so.
+- **Limits.** A new polygon wall cannot be created through Archicad's API; existing library parts are not edited in place; working in Teamwork projects is not supported yet, although the AI can reserve elements.
+
+**Unreal Engine (since 27.29)**
+- **Read the open level** — sub-levels, selection, viewport camera, and actors with their class, transform, bounds, tags, components, meshes and materials; list the project's assets.
+- **Python probes and write tasks** inside the Unreal Editor. A write task is one editor transaction: one Ctrl+Z takes it back, and a task that fails part-way is rolled back. A preview runs the task, reports and reverts it.
+- **Scenes in and out** — export the level as glTF, and import `.glb`, `.gltf`, `.fbx`, `.obj` and Datasmith files, including the scenes Archi Automate exports from Revit, Rhino, Blender, IFC and SketchUp.
+- **Limits.** Editor only; tested with Unreal Engine 5.8; "Never delete elements" does not apply there; imports cannot be previewed or undone; the AI does not save, open or switch levels.
+
+**Dynamic Bridge (since 27.28)**
 - **Nothing is pre-programmed.** Archi ships no tools, no code and no settings for any particular application. Your assistant finds the installation, shows you who signed its API files, and stores a small **profile** on your machine: the installation folder, the API files to use and the objects a piece of code starts with.
 - **Looks the API up before it writes.** Types, members and the publisher's own documentation text are read from your installed files, so the assistant does not guess names. Then it writes a short piece of C#, runs it, reads the result and goes on, one step at a time.
 - **Governed like every bridge.** The code-safety rules (no file, process, network or reflection access by default) apply before code runs; the licence and the audit log apply, and the audit record says which profile the code ran against. A profile is accepted only for an installation under Program Files whose API files carry a valid publisher signature.
@@ -123,7 +143,7 @@ Archicad 27, 28 and 29 are each served by their own signed add-on built from the
 
 **Grasshopper (inside Rhino)** — the AI works on the definition itself, not only its output: inspect the live graph, its wires and computed values, search the installed component catalogue, and apply batched edits that land as **one undo step** and roll back entirely if any part fails. It can auto-lay-out a graph left-to-right by dependency depth so the data flow is readable, build and explode clusters, export a picture of the whole definition to look at what it built, and bake results into Rhino as a single, explicit undo step. Diagnostics name the component that **actually** broke rather than the dozens downstream of it. Script-component code sits behind a separate, administrator-enabled capability.
 
-**AI image generation (new in 27.26)**
+**AI image generation (since 27.26)**
 - Render from **your model, not a text prompt alone** — the local viewer's beauty, **depth**, **hidden-line** and **selection-mask** passes become the control input, so the building you designed is the building in the picture.
 - Five ways to work: a fresh image from a prompt, a **restyle** that keeps your composition, a **geometry-locked** render driven by depth or line art, **inpainting** of just a masked area, and **upscaling**.
 - **Your provider account, your keys** — Google (Gemini), OpenAI, Black Forest Labs (FLUX) and fal.ai; keys are entered in the Hub, encrypted for your Windows user, and never returned to the assistant.
@@ -162,7 +182,8 @@ Full step-by-step setup, per-client instructions, and troubleshooting are in the
 
 ## Governance & privacy
 
-- **Writes are policy-gated** — read access is open by default; write operations run only where your policy permits, and are **checked before they run** and **fully audited**.
+- **Writes are policy-gated** — read access is open by default; write operations run only where your policy permits, and are **checked before they run** and **fully audited**. A new installation starts in **Allow changes**; choose Read only or Preview changes on the Hub's Guardrails page whenever you want the AI to look without touching.
+- **"Never delete elements"** — off by default since 27.32. While it is on, the AI cannot delete elements in Archicad, Grasshopper or Forma. A company policy can turn it on for every managed seat, never off. In the other applications the setting does not apply: use Read only or Preview changes to keep changes out.
 - **The Dynamic Bridge has no read-only mode.** Its code runs only in Allow changes; Read only refuses it and Preview changes checks it without running it. Looking the API up works in every mode.
 - **A local control center (the Hub)** monitors every host connection and lets administrators edit guardrails graphically.
 - **Local by default** — scene export, the 3D viewer, and the solar study run entirely on your machine; **no model data is uploaded**. The only optional outbound calls are public open-data lookups for site context (address geocoding and surrounding footprints) — no model data leaves your machine.
@@ -192,4 +213,4 @@ Archi Automate is built by **Archi (Archi Systems AS)**, Oslo, Norway — makers
 
 **Note:** Archi Automate is **commercial software**. This repository is the official **integration and documentation** hub — it does not contain the product source. Questions, setup help, and issue reports are welcome via [Issues](../../issues) or https://goto.archi.
 
-© Archi Systems AS. "Archi" and "Archi Automate" are trademarks of Archi Systems AS. Revit, AutoCAD, Forma, Autodesk Construction Cloud, BIM 360, Archicad, Rhino, Vectorworks, SketchUp, Blender, QGIS, Claude, GPT, Gemini, and other names are trademarks of their respective owners. Tekla and Tekla Structures are trademarks of Trimble. Archi Automate is independent and is not affiliated with or endorsed by Trimble.
+© Archi Systems AS. "Archi" and "Archi Automate" are trademarks of Archi Systems AS. Revit, AutoCAD, Forma, Autodesk Construction Cloud, BIM 360, Archicad, Rhino, Vectorworks, SketchUp, Blender, QGIS, Unreal Engine, Claude, GPT, Gemini, and other names are trademarks of their respective owners. Tekla and Tekla Structures are trademarks of Trimble. Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. in the United States of America and elsewhere. Archi Automate is independent and is not affiliated with or endorsed by Trimble or Epic Games.

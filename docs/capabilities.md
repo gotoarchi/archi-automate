@@ -1,8 +1,8 @@
 # Archi Automate — Capability Reference
 
-A plain-language reference of what Archi Automate can do across hosts, current as of version **27.28**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
+A plain-language reference of what Archi Automate can do across hosts, current as of version **27.32**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
 
-All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
+All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `unreal_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
 
 ---
 
@@ -22,9 +22,14 @@ All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `arch
 - Read and query drawings — entities, properties, layers, and document structure — across multiple open drawings.
 - Governed automation of drawing operations; each supported release is served by its matching plug-in build.
 
-## Archicad 27 / 28 / 29
-- A curated, governed command set: read model and project data, and create / move / delete elements.
-- Every generation is served by its own signed add-on, built from one shared source. The installer detects each Archicad on the machine and deploys the matching build, so mixed-version offices need no special handling.
+## Archicad 27 / 28 / 29 / 30
+- **Archicad's own functions** (since 27.32) — the AI uses the same functions Archicad offers to add-ons: 595 of the 606 useful ones in Archicad 30, 93 to 95% in Archicad 27, 28 and 29. Views and layouts in the Navigator; project preferences, rendering settings and tool defaults; autotexts and revisions; quantities, user data and IFC data; hotlinks; issues and BCF; Teamwork reservations; libraries and favorites; new GDL objects with their scripts and parameters; opening a project, publishing a PDF set and rendering a photo; freeform Morph elements.
+- **Every element, every setting** (since 27.31) — create, read and change any element type with its documented settings: 71 element types and about 2,400 settings in Archicad 30, with geometry, doors, windows, skylights and objects with their GDL parameters, and materials, surfaces, layers and composites by name.
+- **2D, views and batches** (since 27.29) — read and draw in plans, sections, elevations and layouts, and open a view.
+- **How changes are applied.** Reading never changes the model and works in every Guardrails mode (`archicad_query`). Changes Archicad can undo go into one batch (`archicad_execute_batch`): all or nothing, one undo step, and they can be previewed. Changes Archicad cannot undo run in a separate step (`archicad_project_ops`); Undo does not remove them, and the answer says so. The AI looks up the setting or function it needs (`archicad_api_search`), so the tool list stays light.
+- **Deletes** are allowed unless "Never delete elements" is on (off by default since 27.32; a company policy can only turn it on).
+- Every generation is served by its own signed add-on, built from one shared source. The installer detects each Archicad on the machine and deploys the matching build, so mixed-version offices need no special handling. After an update, run the installer and restart Archicad: the automatic update cannot replace the add-on inside Archicad.
+- Tested live in Archicad 29 and 30; Archicad 27 and 28 run the same add-on code. Not yet: creating new polygon walls, editing existing library parts in place, working in Teamwork projects (the AI can reserve elements).
 
 ## Rhino 8
 - Read and query geometry and document data; author and modify; governed writes wrapped in a single undo step.
@@ -90,7 +95,7 @@ Tekla and Tekla Structures are trademarks of Trimble. Archi Automate is independ
 - Governed automation, with reads and writes dispatched so long queries never block interactive work.
 
 ## SketchUp 2026
-- Read and query the model and its entities; export the scene.
+- Read and query the model and its entities; export the scene, as Collada and, since 27.30, as a `.glb` that Unreal Engine can import.
 - Governed Ruby automation inside the running SketchUp session.
 
 ## Blender
@@ -102,6 +107,15 @@ Tekla and Tekla Structures are trademarks of Trimble. Archi Automate is independ
 - Read and query project layers and features.
 - **Site context export** — turn geospatial data into context for design and simulation.
 - Governed Python automation inside the running QGIS session.
+
+## Unreal Engine (since 27.29; tested with 5.8)
+- An Archi Automate engine plug-in that runs inside the Unreal Editor through Epic's Python Editor Script Plugin. Editor only: it adds nothing to packaged projects.
+- **Read the open level** — sub-levels, selection, viewport camera, play-in-editor state, and actors with their class, transform, bounds, tags, folder, components, meshes and materials; list the project's assets; search the editor's scripting API so the code is right.
+- **Read-only Python probes**, and **write tasks** that run as one editor transaction: one Ctrl+Z takes a task back, and a task that fails part-way is rolled back. A preview runs the task, reports and reverts it.
+- **Export the level** as a glTF scene; **import** `.glb`, `.gltf`, `.fbx`, `.obj` and Datasmith files, including the scenes Archi Automate exports from Revit, Rhino, Blender, IFC and SketchUp. Since 27.30, scenes from Revit, IFC, Rhino and Forma import standing up.
+- **Limits.** "Never delete elements" does not apply in Unreal Engine; use Read only or Preview changes to keep changes out. Imports cannot be previewed or undone. The AI does not save, open or switch levels; you save. Changes are refused while Play In Editor runs.
+
+Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. in the United States of America and elsewhere. Archi Automate is independent and is not affiliated with or endorsed by Epic Games.
 
 ## openBIM / IFC (no CAD app required)
 **IFC**
