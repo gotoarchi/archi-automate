@@ -1,6 +1,6 @@
 # Archi Automate — Capability Reference
 
-A plain-language reference of what Archi Automate can do across hosts, current as of version **27.33**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
+A plain-language reference of what Archi Automate can do across hosts, current as of version **27.34**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
 
 All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `unreal_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
 
@@ -18,9 +18,9 @@ All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `arch
 - **Publish to the cloud** — save an open local model into an Autodesk cloud project as a cloud model, keeping its workshared or single-user state. This is what lets cloud models take part in the project move described under Construction Cloud below.
 - Fast, recoverable signal when Revit is busy (starting, modal dialog, mid-command) instead of hanging.
 
-## AutoCAD (2025 / 2026 / 2027)
+## AutoCAD (2021 / 2022 / 2023 / 2024 / 2025 / 2026 / 2027)
 - Read and query drawings — entities, properties, layers, and document structure — across multiple open drawings.
-- Governed automation of drawing operations; each supported release is served by its matching plug-in build.
+- Governed automation of drawing operations; each supported release is served by its matching plug-in build (AutoCAD 2021-2024 by a .NET Framework 4.8 build, since 27.34; run the installer to get it).
 
 ## Archicad 27 / 28 / 29 / 30
 - **Archicad's own functions** (since 27.32) — the AI uses the same functions Archicad offers to add-ons: 595 of the 606 useful ones in Archicad 30, 93 to 95% in Archicad 27, 28 and 29. Views and layouts in the Navigator; project preferences, rendering settings and tool defaults; autotexts and revisions; quantities, user data and IFC data; hotlinks; issues and BCF; Teamwork reservations; libraries and favorites; new GDL objects with their scripts and parameters; opening a project, publishing a PDF set and rendering a photo; freeform Morph elements.

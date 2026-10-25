@@ -11,22 +11,19 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 [![Website](https://img.shields.io/badge/website-goto.archi-0f62fe)](https://goto.archi/ai-for-aec)
 [![MCP](https://img.shields.io/badge/protocol-MCP-5b9bff)](https://modelcontextprotocol.io)
 [![Trial](https://img.shields.io/badge/trial-14--day%20free-2e7d32)](https://goto.archi/ai-for-aec)
-[![Version](https://img.shields.io/badge/version-27.33-4d4d4d)](https://goto.archi/ai-for-aec)
+[![Version](https://img.shields.io/badge/version-27.34-4d4d4d)](https://goto.archi/ai-for-aec)
 
 ---
 
-## What's new in 27.33
+## What's new in 27.34
 
-- **Start your trial in setup.** On a fresh install, setup now has an **Activate** step after the license agreement. On a new computer, choose **Start a free 14-day trial**, enter your name and email, and enter the 6-digit PIN we email you. Or choose **I have a license key**: setup checks the key and saves it.
-- **Nothing to register when you are already licensed.** A floating seat, or a key already stored on the computer, needs no registration. A computer whose trial is already running registers it, and the trial keeps its end date. An expired trial does not restart: enter a key now or later in the Hub.
-- **No email?** Check your spam folder. **Resend PIN** is available after 30 seconds, and **Change email** lets you correct the address.
-- **Never blocked.** If setup cannot reach Archi, choose **Retry** or **Continue without registering**: the install goes on.
-- **Updates do not ask again.** Updating from an older version, with setup or the automatic update, skips the Activate step.
-- **The full license agreement.** Setup now shows the Archi Automate end-user license agreement (Archi Systems AS): trial, Desktop, Floating and subscription terms, what the license checks send, and your part when an AI assistant works in your models.
-- **Fixed:** license checks on computers set to a non-Gregorian calendar (for example Thai Buddhist or Hijri), which could refuse a paid license; pasting into a setup field no longer closes setup. The Rhino plug-in's details now point to https://goto.archi and software@goto.archi.
-- No change to the tools in Revit, Archicad or the other applications.
+- **AutoCAD 2021, 2022, 2023 and 2024.** Archi Automate now works in AutoCAD 2021 to 2027. The older releases run AutoCAD's .NET Framework 4.8, so they get their own build of the same AutoCAD plug-in, with the same tools. **AutoCAD 2021-2024 users: run the 27.34 installer**; the automatic update does not install the AutoCAD plug-in.
+- **A way to buy when the license runs out.** When a trial has ended, the message in every application now ends with a link to buy a license.
+- No other change to the tools.
 
 ## Earlier releases
+
+**27.33** — Setup starts the 14-day trial (name, email and a 6-digit PIN) or saves your license key; nothing to register when you are already licensed, and updates do not ask again. The full end-user license agreement in setup. Fixed: license checks on computers set to a non-Gregorian calendar.
 
 **27.32** — Archicad: the AI uses Archicad's own functions, the ones Archicad offers to add-ons: **595 of the 606** useful ones in Archicad 30 (93 to 95% in Archicad 27, 28 and 29), for views and layouts, project preferences and tool defaults, documentation, quantities and data, hotlinks, issues and BCF, Teamwork reservations, libraries, new GDL objects and freeform Morph elements. Changes Archicad cannot undo run in a separate step, and the answer says that Undo does not remove them. Guardrails: deletes are allowed unless "Never delete elements" is on (off by default since 27.32; settings saved before 27.32 keep their value; a company policy can only turn it on). Archicad users run the installer once, then restart Archicad: the automatic update cannot replace the add-on inside Archicad.
 
@@ -70,7 +67,7 @@ For Revit, Archicad, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, QGIS and Un
 | Host | Versions | Integration |
 |------|----------|-------------|
 | **Autodesk Revit** | 2024, 2025, 2026, 2027 | In-process add-in |
-| **Autodesk AutoCAD** | 2025, 2026, 2027 | In-process plug-in (per-release bundle) |
+| **Autodesk AutoCAD** | 2021, 2022, 2023, 2024, 2025, 2026, 2027 | In-process plug-in (per-release bundle) |
 | **Graphisoft Archicad** | 27, 28, 29, 30 | Native add-on + bridge (signed, per version) |
 | **Rhino (McNeel)** | 8 — incl. **Grasshopper** | Rhino plug-in |
 | **Dynamic Bridge** — works with Tekla Structures | Applications with a .NET Framework API, 64-bit; tested with Tekla Structures 2026 | Nothing installed into the application; your assistant sets it up the first time you ask. No read-only mode |
