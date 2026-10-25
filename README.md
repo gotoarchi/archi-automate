@@ -30,7 +30,7 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 
 **27.31** — Archicad: the AI can create, read and change any element, with every setting: 71 element types and about 2,400 settings in Archicad 30, with geometry, doors, windows and objects with their GDL parameters, and materials, surfaces, layers and composites by name.
 
-**27.30** — Unreal Engine: scenes exported from Revit, IFC, Rhino and Forma now import standing up, and SketchUp's scene export also writes a `.glb` that Unreal Engine can import.
+**27.30** — Unreal Engine: scenes exported from Revit, IFC, Rhino and Forma now import standing up.
 
 **27.29** — **Archicad 30** support. In Archicad 29 and 30 the AI reads and draws in 2D, lists and opens views, and sends its work as all-or-nothing batches that are one undo step and can be previewed (Archicad 27 and 28 have these since 27.31). A new **Unreal Engine** bridge: the AI reads the open level, runs read-only Python probes and undoable write tasks inside the Unreal Editor, exports the level and imports scenes.
 
@@ -131,7 +131,7 @@ Unreal Engine works in the Unreal Editor only and adds nothing to packaged proje
 **Unreal Engine (since 27.29)**
 - **Read the open level** — sub-levels, selection, viewport camera, and actors with their class, transform, bounds, tags, components, meshes and materials; list the project's assets.
 - **Python probes and write tasks** inside the Unreal Editor. A write task is one editor transaction: one Ctrl+Z takes it back, and a task that fails part-way is rolled back. A preview runs the task, reports and reverts it.
-- **Scenes in and out** — export the level as glTF, and import `.glb`, `.gltf`, `.fbx`, `.obj` and Datasmith files, including the scenes Archi Automate exports from Revit, Rhino, Blender, IFC and SketchUp.
+- **Scenes in and out** — export the level as glTF, and import `.glb`, `.gltf`, `.fbx`, `.obj` and Datasmith files, including the scenes Archi Automate exports from Revit, Rhino, Blender and IFC.
 - **Limits.** Editor only; tested with Unreal Engine 5.8; "Never delete elements" does not apply there; imports cannot be previewed or undone; the AI does not save, open or switch levels.
 
 **Dynamic Bridge (since 27.28)**

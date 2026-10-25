@@ -112,7 +112,7 @@ Tekla and Tekla Structures are trademarks of Trimble. Archi Automate is independ
 - An Archi Automate engine plug-in that runs inside the Unreal Editor through Epic's Python Editor Script Plugin. Editor only: it adds nothing to packaged projects.
 - **Read the open level** — sub-levels, selection, viewport camera, play-in-editor state, and actors with their class, transform, bounds, tags, folder, components, meshes and materials; list the project's assets; search the editor's scripting API so the code is right.
 - **Read-only Python probes**, and **write tasks** that run as one editor transaction: one Ctrl+Z takes a task back, and a task that fails part-way is rolled back. A preview runs the task, reports and reverts it.
-- **Export the level** as a glTF scene; **import** `.glb`, `.gltf`, `.fbx`, `.obj` and Datasmith files, including the scenes Archi Automate exports from Revit, Rhino, Blender, IFC and SketchUp. Since 27.30, scenes from Revit, IFC, Rhino and Forma import standing up.
+- **Export the level** as a glTF scene; **import** `.glb`, `.gltf`, `.fbx`, `.obj` and Datasmith files, including the scenes Archi Automate exports from Revit, Rhino, Blender and IFC. Since 27.30, scenes from Revit, IFC, Rhino and Forma import standing up.
 - **Limits.** "Never delete elements" does not apply in Unreal Engine; use Read only or Preview changes to keep changes out. Imports cannot be previewed or undone. The AI does not save, open or switch levels; you save. Changes are refused while Play In Editor runs.
 
 Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. in the United States of America and elsewhere. Archi Automate is independent and is not affiliated with or endorsed by Epic Games.
