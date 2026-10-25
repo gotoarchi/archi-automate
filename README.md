@@ -1,6 +1,6 @@
 # Archi Automate — AI for AEC
 
-**One AI connection for Revit, Archicad, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, QGIS, Unreal Engine, openBIM/IFC, Tekla Structures through the Dynamic Bridge — and Autodesk Forma and Construction Cloud in the cloud. New in 27.32: the AI uses Archicad's own functions.**
+**One AI connection for Revit, Archicad, Rhino, AutoCAD, Vectorworks, SketchUp, Blender, QGIS, Unreal Engine, openBIM/IFC, Tekla Structures through the Dynamic Bridge — and Autodesk Forma and Construction Cloud in the cloud. New in 27.33: start your free trial or enter your license key right in setup.**
 
 Archi Automate is a commercial **MCP (Model Context Protocol) server** that connects AI assistants — the Claude (Anthropic), GPT/Codex (OpenAI), and Gemini (Google) families — to your **live AEC models**. Query, analyze, validate, and automate with natural language, across multiple design tools at once, from the AI client you already use.
 
@@ -11,22 +11,24 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 [![Website](https://img.shields.io/badge/website-goto.archi-0f62fe)](https://goto.archi/ai-for-aec)
 [![MCP](https://img.shields.io/badge/protocol-MCP-5b9bff)](https://modelcontextprotocol.io)
 [![Trial](https://img.shields.io/badge/trial-14--day%20free-2e7d32)](https://goto.archi/ai-for-aec)
-[![Version](https://img.shields.io/badge/version-27.32-4d4d4d)](https://goto.archi/ai-for-aec)
+[![Version](https://img.shields.io/badge/version-27.33-4d4d4d)](https://goto.archi/ai-for-aec)
 
 ---
 
-## What's new in 27.32
+## What's new in 27.33
 
-- **Archicad: the AI uses Archicad's own functions.** 27.31 let the AI create, read and change any element. 27.32 lets it work with the rest of the project, through the same functions Archicad offers to add-ons. In Archicad 30 it can use **595 of the 606** functions that are useful to it (98%); in Archicad 27, 28 and 29, 93 to 95%. 27.31 used 89.
-- **What that covers** — views and layouts in the Navigator; project preferences, rendering settings and tool defaults; autotexts and revisions; quantities, user data and IFC data; hotlinks; issues and BCF; Teamwork reservations; libraries and favorites; opening a project, publishing a PDF set and rendering a photo; and geometry helpers.
-- **New GDL objects** — the AI can create a new GDL object, with its scripts and parameters, in one step.
-- **Freeform Morph elements** can now be created and reshaped.
-- **The tool list stays light.** The AI looks up the function it needs (`archicad_api_search`, kind "function"). Reads go through `archicad_query`. Changes Archicad can undo go into the batch (`archicad_execute_batch`): all or nothing, one undo step. Changes Archicad cannot undo run in a separate step (`archicad_project_ops`), and the answer says that Undo does not remove them.
-- **Tested live in Archicad 29 and 30.** Archicad 27 and 28 run the same add-on code.
-- **Guardrails: deletes are now allowed unless "Never delete elements" is on.** Until 27.31 the setting was on by default. From 27.32 it is off by default, so the AI can delete elements in Archicad, Grasshopper and Forma unless you tick it on the Hub's Guardrails page or your company policy turns it on. A company policy can only turn it on, never off. If you saved your Guardrails settings before 27.32, the setting keeps the value you saved. Read only and Preview changes still keep every change, deletes included, out of your model.
-- **Archicad users: run the installer**, then restart Archicad. The automatic update installs the new Archi Automate but cannot replace the add-on inside Archicad. Until the installer runs, the older Archicad tools keep working and the new features say the add-on is older than the bridge.
+- **Start your trial in setup.** On a fresh install, setup now has an **Activate** step after the license agreement. On a new computer, choose **Start a free 14-day trial**, enter your name and email, and enter the 6-digit PIN we email you. Or choose **I have a license key**: setup checks the key and saves it.
+- **Nothing to register when you are already licensed.** A floating seat, or a key already stored on the computer, needs no registration. A computer whose trial is already running registers it, and the trial keeps its end date. An expired trial does not restart: enter a key now or later in the Hub.
+- **No email?** Check your spam folder. **Resend PIN** is available after 30 seconds, and **Change email** lets you correct the address.
+- **Never blocked.** If setup cannot reach Archi, choose **Retry** or **Continue without registering**: the install goes on.
+- **Updates do not ask again.** Updating from an older version, with setup or the automatic update, skips the Activate step.
+- **The full license agreement.** Setup now shows the Archi Automate end-user license agreement (Archi Systems AS): trial, Desktop, Floating and subscription terms, what the license checks send, and your part when an AI assistant works in your models.
+- **Fixed:** license checks on computers set to a non-Gregorian calendar (for example Thai Buddhist or Hijri), which could refuse a paid license; pasting into a setup field no longer closes setup. The Rhino plug-in's details now point to https://goto.archi and software@goto.archi.
+- No change to the tools in Revit, Archicad or the other applications.
 
 ## Earlier releases
+
+**27.32** — Archicad: the AI uses Archicad's own functions, the ones Archicad offers to add-ons: **595 of the 606** useful ones in Archicad 30 (93 to 95% in Archicad 27, 28 and 29), for views and layouts, project preferences and tool defaults, documentation, quantities and data, hotlinks, issues and BCF, Teamwork reservations, libraries, new GDL objects and freeform Morph elements. Changes Archicad cannot undo run in a separate step, and the answer says that Undo does not remove them. Guardrails: deletes are allowed unless "Never delete elements" is on (off by default since 27.32; settings saved before 27.32 keep their value; a company policy can only turn it on). Archicad users run the installer once, then restart Archicad: the automatic update cannot replace the add-on inside Archicad.
 
 **27.31** — Archicad: the AI can create, read and change any element, with every setting: 71 element types and about 2,400 settings in Archicad 30, with geometry, doors, windows and objects with their GDL parameters, and materials, surfaces, layers and composites by name.
 
@@ -170,9 +172,11 @@ Any other current or future MCP client connects with the same copy-paste stdio c
 ## Quick start
 
 1. **Install** — one installer sets up the shared components and every host bridge for the design tools on your machine. Restart any open host (Revit/Archicad/…) after install.
-2. **Connect your AI client** — one click from the Archi Automate **Hub**, or paste the standard MCP stdio config. Restart the client.
-3. **Start a 14-day free trial** — full-featured, no license key required, covering all hosts.
+2. **Activate, in setup** — start your **14-day free trial** (full-featured, all hosts): enter your name and email, then the 6-digit PIN we email you. Or choose **I have a license key**. A floating seat needs no registration, and updates never ask again.
+3. **Connect your AI client** — one click from the Archi Automate **Hub**, or paste the standard MCP stdio config. Restart the client.
 4. **Ask away** — open a model, point your AI client at it, and start in natural language.
+
+No PIN email? Check your spam folder, wait 30 seconds and click **Resend PIN**, or **Change email**. No connection? **Retry**, or **Continue without registering**: the install is never blocked. Got a key later? Enter it in the Hub under **License** → **Enter license key**; your key is on your account page at goto.archi.
 
 For the cloud connectors — Forma and Construction Cloud / BIM 360 — there is nothing to install: sign in to Autodesk from the Hub and register the project you want to work with. Cloud projects also require a one-time authorization of Archi Automate by an account administrator, once per Autodesk account and region — the Hub shows you exactly what to send them.
 
@@ -190,6 +194,7 @@ Full step-by-step setup, per-client instructions, and troubleshooting are in the
 - **Cloud connectors never see your password.** Sign-in happens in your own browser on the vendor's page; Archi Automate receives only a revocable access token, stored encrypted for your Windows user account on your machine. Nothing is held on our servers, and you can revoke access at any time from your vendor account or by disconnecting in the Hub. A cloud connector can only ever reach what the signed-in user is already permitted to see.
 - **AI image generation is bounded by the same policy** — it can be switched off entirely, restricted to named providers, capped by monthly budget and image size, and put in **confidential-project mode**, where every request carries the provider's no-store switch and any model whose provider trains on customer inputs is refused outright. Provider keys can be locked to Hub entry so a key never passes through a chat.
 - **AI-generated images are labelled** — outputs carry the provider's watermark (Google SynthID, OpenAI C2PA) and a provenance sidecar; disclose AI-assisted imagery where a client or competition requires it.
+- **License checks send no project data** — only technical identifiers of the computer and the software's release date. The license agreement in setup says exactly what, and how a trial registration is used.
 - **Your AI provider** handles your prompts per its own terms; Archi Automate adds the governed bridge between the AI and your models.
 
 ---

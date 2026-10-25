@@ -1,6 +1,6 @@
 # Archi Automate — Capability Reference
 
-A plain-language reference of what Archi Automate can do across hosts, current as of version **27.32**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
+A plain-language reference of what Archi Automate can do across hosts, current as of version **27.33**. For setup, see [`connect.md`](connect.md); for the product overview, see https://goto.archi/ai-for-aec.
 
 All capabilities are exposed as MCP tools, namespaced per host (`revit_*`, `archicad_*`, `rhino_*`, `grasshopper_*`, `autocad_*`, `vectorworks_*`, `sketchup_*`, `blender_*`, `qgis_*`, `unreal_*`, `ifc_*`, `forma_*`, `acc_*`), plus the Dynamic Bridge's `dotnet_*` tools, image-generation tools (`render_*`, `provider_*`), with a cross-host discovery tool so the AI can target any open session.
 

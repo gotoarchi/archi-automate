@@ -50,7 +50,7 @@ The installer places the MCP server on your machine and the **Hub shows you the 
 2. In your AI client, ask the assistant to list available sessions or describe the open model.
 3. Start with read-only questions; enable write operations through your policy when you're ready (writes are governed and audited).
 
-A **14-day full-featured trial** starts automatically on first run — no license key required, all hosts included.
+A **14-day full-featured trial**, all hosts included, is started in setup: on a new computer, setup's **Activate** step asks for your name and email and confirms them with a 6-digit PIN by email. If you have a license key, enter it there instead, or later in the Hub under **License**. Updates do not ask again.
 
 Questions? Open an [issue](../../issues) or visit https://goto.archi/ai-for-aec.
 
