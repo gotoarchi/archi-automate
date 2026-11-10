@@ -6,12 +6,27 @@ Archi Automate is a commercial **MCP (Model Context Protocol) server** that conn
 
 > **AI for AEC, not just one CAD tool.** A single MCP connection reaches every supported host, so one conversation can read context in one tool and act in another — including a cloud project with nothing installed at all.
 
-🔗 **Product:** https://goto.archi/ai-for-aec · **User guide:** https://goto.archi/archi-automate-user-guide
+🔗 **Examples:** https://archiautomate.com · **Product:** https://goto.archi/ai-for-aec · **User guide:** https://goto.archi/archi-automate-user-guide
 
 [![Website](https://img.shields.io/badge/website-goto.archi-0f62fe)](https://goto.archi/ai-for-aec)
+[![Examples](https://img.shields.io/badge/examples-archiautomate.com-3346B8)](https://archiautomate.com/)
 [![MCP](https://img.shields.io/badge/protocol-MCP-5b9bff)](https://modelcontextprotocol.io)
 [![Trial](https://img.shields.io/badge/trial-14--day%20free-2e7d32)](https://goto.archi/ai-for-aec)
-[![Version](https://img.shields.io/badge/version-27.34-4d4d4d)](https://goto.archi/ai-for-aec)
+[![Version](https://img.shields.io/badge/version-27.37-4d4d4d)](https://goto.archi/ai-for-aec)
+
+---
+
+## See it working
+
+Real examples made with Archi Automate, each with the prompt and the tools behind it, on **[archiautomate.com](https://archiautomate.com/examples/)**.
+
+<p>
+<a href="https://archiautomate.com/renders/grundtvigs-church-west-front/"><img src="docs/media/showcase/grundtvigs-church-west-front.jpg" width="32%" alt="Grundtvig's Church, West Front: an AI-generated render from a Revit view"></a>
+<a href="https://archiautomate.com/simulations/trafalgar-square-sun-hours/"><img src="docs/media/showcase/trafalgar-square-sun-hours.jpg" width="32%" alt="Trafalgar Square: hours of direct sun on 21 June, computed by Archi Automate and recorded in the Archi Automate viewer"></a>
+<a href="https://archiautomate.com/models/farnsworth-house-anatomi/"><img src="docs/media/showcase/farnsworth-house.jpg" width="32%" alt="Farnsworth House, modelled in Revit through Archi Automate"></a>
+</p>
+
+**Render**: [Grundtvig's Church, West Front](https://archiautomate.com/renders/grundtvigs-church-west-front/) (AI-generated) · **Sun study**: [Trafalgar Square, sun hours on 21 June](https://archiautomate.com/simulations/trafalgar-square-sun-hours/) · **Model**: [Farnsworth House in Revit](https://archiautomate.com/models/farnsworth-house-anatomi/) · **[Prompts](https://archiautomate.com/prompts/)** to copy and adapt.
 
 ---
 
@@ -120,6 +135,8 @@ Unreal Engine works in the Unreal Editor only and adds nothing to packaged proje
 - **Site context** from public open data (address → surrounding building footprints).
 - **AR export** to **USDZ** (Apple AR Quick Look) alongside glTF.
 
+See sun studies: [archiautomate.com/simulations](https://archiautomate.com/simulations/)
+
 **Archicad (27, 28, 29, 30)**
 - **Every element, every setting** (since 27.31) — create, read and change any element type with its documented settings: slabs, roofs, columns, beams, meshes, zones, hatches, curtain walls, stairs and railings with geometry; doors, windows, skylights and objects with their GDL parameters; materials, surfaces, layers and composites by name.
 - **Archicad's own functions** (since 27.32) — views and layouts, project settings, documentation, quantities and data, hotlinks, issues and BCF, Teamwork reservations, libraries, new GDL objects and freeform Morph elements.
@@ -149,6 +166,8 @@ Unreal Engine works in the Unreal Editor only and adds nothing to packaged proje
 - **Costed before it runs** — a free estimate for any model and size, an optional monthly cap, and a local ledger of what was actually spent.
 - **Provenance beside every image** — source image and SHA-256, camera, model, prompt as sent, size, seed, cost and watermark kind, so an AI-assisted visual can be disclosed and audited.
 - The model catalogue is **data you can edit**, and a raw passthrough reaches models newer than your build.
+
+See renders from real models: [archiautomate.com/renders](https://archiautomate.com/renders/)
 
 📖 Full capability reference: [`docs/capabilities.md`](docs/capabilities.md)
 
@@ -198,6 +217,7 @@ Full step-by-step setup, per-client instructions, and troubleshooting are in the
 
 ## Learn more
 
+- [Examples](https://archiautomate.com/examples/): renders, sun studies and models, with the prompts and tools behind them
 - **Product overview:** https://goto.archi/ai-for-aec
 - **User guide:** https://goto.archi/archi-automate-user-guide
 - **Free guide — Working with Tekla Structures through the Dynamic Bridge:** [`guides/tekla-structures/`](guides/tekla-structures/)
